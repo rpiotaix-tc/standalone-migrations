@@ -300,13 +300,13 @@ production:
   describe 'db:test:load' do
     it 'loads' do
       write(schema, "puts 'LOADEDDD'")
-      expect(run("rake db:test:load")).to match(/LOADEDDD/)
+      expect(run("rake db:test:load_schema")).to match(/LOADEDDD/)
     end
 
     it "fails without schema" do
       schema_path = "spec/tmp/#{schema}"
       `rm -rf #{schema_path}` if File.exist?(schema_path)
-      expect(lambda{ run("rake db:test:load") }).to raise_error(/try again/)
+      expect(lambda{ run("rake db:test:load_schema") }).to raise_error(/try again/)
     end
   end
 
